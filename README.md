@@ -1,24 +1,3 @@
-# goto
+# [casca.dev/goto](https://casca.dev/goto) · [![Hosted at Vercel.com](https://img.shields.io/badge/hosted%20at-vercel.com-black?logo=zeit&logoColor=black&style=flat-square)](https://vercel.com/) [![Frontend Vue.js](https://img.shields.io/badge/frontend-Vue.js-%2341b583?logo=Vue.js&style=flat-square)](https://vuejs.org/) [![Backend Go](https://img.shields.io/badge/backend-Go-%2300abd6?logo=Go&style=flat-square)](https://golang.org/) [![Database MongoDB](https://img.shields.io/badge/database-MongoDB-%2310aa50?logo=MongoDB&style=flat-square)](https://www.mongodb.com/)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+My personal URL shortener. Written in Go and Vue.js. [work in progress 👷🏻‍♂️]
