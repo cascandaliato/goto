@@ -11,5 +11,11 @@
       "source": "/goto/api/(.*)",
       "destination": "https://goto.casca.vercel.app/api/$1"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/goto/((?!api/).*)",
+      "destination": "https://goto.casca.vercel.app/goto"
+    }
   ]
 }
