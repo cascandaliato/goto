@@ -6,9 +6,7 @@
     {
       "source": "/",
       "destination": "https://goto.casca.vercel.app/goto"
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/goto/api/(.*)",
       "destination": "https://goto.casca.vercel.app/api/$1"
