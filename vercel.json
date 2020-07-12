@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "(?:/(?!goto)(?!api).*)",
+      "source": "(/(?!goto)(?!api).*)",
       "destination": "https://goto.casca.vercel.app/goto"
     },
     {
