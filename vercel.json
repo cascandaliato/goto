@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://goto.casca.vercel.app/goto"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/goto/api/(.*)",
+      "destination": "https://goto.casca.vercel.app/api/$1"
+    }
+  ]
+}
