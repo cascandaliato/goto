@@ -1,0 +1,30 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - before: cd frontend
+    init: npm install
+    command: vercel dev --local-config vercel.dev.json --token $VERCEL_TOKEN
+    name: vercel dev
+  - command: mkdir --parents /workspace/data && mongod --dbpath /workspace/data
+    name: mongodb
+    openMode: split-right
+
+ports:
+  - port: 3000
+    onOpen: open-preview
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    addCheck: true
+    addComment: false
+
+vscode:
+  extensions:
+    - msjsdiag.debugger-for-chrome@4.12.6:IdQBlCQEnixzHAOkHC36ew==
+    - octref.vetur@0.24.0:FtNScOJHzSTxcNY6NB60Cg==
+    - esbenp.prettier-vscode@5.1.0:M3Ww4EayZWhGCgk49C1Ldw==
+    - premparihar.gotestexplorer@0.1.11:DhzL8CT0KN1bzUVh3ZL3rQ==
