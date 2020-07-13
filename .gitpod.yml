@@ -2,8 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - before: cd frontend
-    init: npm install
+  - init: npm install
     command: vercel dev --local-config vercel.dev.json --token $VERCEL_TOKEN
     name: vercel dev
   - command: mkdir --parents /workspace/data && mongod --dbpath /workspace/data
