@@ -61,7 +61,7 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&errorResponse{Message: err.Error()})
 		return
 	}
-	urlRedirect.ShortURL = toURL(origin, urlRedirect.Slug)
+	urlRedirect.ShortURL = toURL(urlRedirect.Slug)
 	json.NewEncoder(w).Encode(urlRedirect)
 }
 
@@ -131,6 +131,6 @@ func randStringRunes(n int) string {
 	return string(b)
 }
 
-func toURL(origin, slug string) string {
-	return fmt.Sprintf("%s/goto/%s", origin, slug)
+func toURL(slug string) string {
+	return fmt.Sprintf("https://casca.dev/goto/%s", slug)
 }
