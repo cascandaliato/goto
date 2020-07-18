@@ -22,9 +22,18 @@ export default {
   data: () => ({ data: {} }),
   methods: {
     async api() {
-      const { data } = await axios.get("/api/date");
-      this.data = data;
+      try {
+        const { data } = await axios.post("/api/shorten", {
+          targetURL: `https://${Math.round(Math.random() * 100000)}.com/`
+        });
+        this.data = data;
+      } catch (e) {
+        console.log(e);
+      }
     }
+  },
+  created() {
+    // setInterval(this.api, 5000);
   }
 };
 </script>
