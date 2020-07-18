@@ -36,7 +36,7 @@ type errorResponse struct {
 
 const timeoutSec = 1
 
-var letterRunes = []rune("abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ123456789")
+var letterRunes = []rune("abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789")
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
@@ -44,7 +44,11 @@ func init() {
 
 // ShortenHandler creates a shortURL from a given targetURL.
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "https://casca.dev, https://carmeloscandaliato.com, ")
+	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
+		w.Header().Set("Access-Control-Allow-Origin", "https://carmeloscandaliato.com")
+	} else {
+		w.Header().Set("Access-Control-Allow-Origin", "https://casca.dev")
+	}
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Accept-Language, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 	if r.Method == "OPTIONS" {
