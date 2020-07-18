@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -17,7 +16,7 @@ import (
 )
 
 type urlRedirect struct {
-	ShortURL  string `bson:"shortURL" json:"shortURL"`
+	ShortURL  string `bson:"-" json:"shortURL"`
 	Slug      string `bson:"slug" json:"-"`
 	TargetURL string `bson:"targetURL" json:"targetURL"`
 }
@@ -56,17 +55,13 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, error) {
-	log.Println("Incoming request")
-
 	var reqBody requestBody
 	err := json.NewDecoder(r.Body).Decode(&reqBody)
 	if err != nil {
 		return nil, e("error while parsing request", err)
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), timeoutSec*time.Second)
-	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGODB")))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(os.Getenv("MONGODB")))
 	if err != nil {
 		return nil, e("error while connecting to database", err)
 	}
@@ -74,13 +69,9 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, err
 	defer client.Disconnect(context.TODO())
 
 	collection := client.Database("goto").Collection("redirects")
-	ctx, cancel = context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
 
 	var redir urlRedirect
-	ctx, cancel = context.WithTimeout(context.Background(), timeoutSec*time.Second)
-	defer cancel()
-	err = collection.FindOne(ctx, bson.M{"targetURL": reqBody.TargetURL}).Decode(&redir)
+	err = collection.FindOne(context.TODO(), bson.M{"targetURL": reqBody.TargetURL}).Decode(&redir)
 	if err == nil {
 		return &redir, nil
 	}
@@ -94,7 +85,7 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, err
 	}
 
 	redir = urlRedirect{TargetURL: reqBody.TargetURL, Slug: slug}
-	_, err = collection.InsertOne(ctx, redir)
+	_, err = collection.InsertOne(context.TODO(), redir)
 	if err != nil {
 		return nil, e("error while adding record to database", err)
 	}
