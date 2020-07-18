@@ -23,7 +23,10 @@ export default {
   methods: {
     async api() {
       try {
-        const { data } = await axios.post("/api/shorten", {
+        const url = `${
+          process.env.NODE_ENV === "production" ? "/goto" : ""
+        }/api/shorten`;
+        const { data } = await axios.post(url, {
           targetURL: `https://${Math.round(Math.random() * 100000)}.com/`
         });
         this.data = data;
