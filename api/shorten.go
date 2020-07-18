@@ -44,11 +44,11 @@ func init() {
 
 // ShortenHandler creates a shortURL from a given targetURL.
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
+	origin := "https://casca.dev"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
-		w.Header().Set("Access-Control-Allow-Origin", "https://carmeloscandaliato.com")
-	} else {
-		w.Header().Set("Access-Control-Allow-Origin", "https://casca.dev")
+		origin = "https://carmeloscandaliato.com"
 	}
+	w.Header().Set("Access-Control-Allow-Origin", origin)
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Accept-Language, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 	if r.Method == "OPTIONS" {
@@ -61,7 +61,7 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&errorResponse{Message: err.Error()})
 		return
 	}
-	urlRedirect.ShortURL = toURL(urlRedirect.Slug)
+	urlRedirect.ShortURL = toURL(origin, urlRedirect.Slug)
 	json.NewEncoder(w).Encode(urlRedirect)
 }
 
@@ -131,6 +131,6 @@ func randStringRunes(n int) string {
 	return string(b)
 }
 
-func toURL(slug string) string {
-	return fmt.Sprintf("https://casca.dev/goto/%s", slug)
+func toURL(origin, slug string) string {
+	return fmt.Sprintf("%s/goto/%s", origin, slug)
 }
