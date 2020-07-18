@@ -9,7 +9,7 @@
     },
     {
       "source": "/goto/api/(.*)",
-      "destination": "https://goto.casca.vercel.app/api/$1"
+      "destination": "/api/$1"
     }
   ],
   "rewrites": [

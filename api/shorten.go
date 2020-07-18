@@ -44,9 +44,9 @@ func init() {
 
 // ShortenHandler creates a shortURL from a given targetURL.
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "https://casca.dev")
+	w.Header().Set("Access-Control-Allow-Origin", "https://casca.dev, https://carmeloscandaliato.com, ")
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Accept-Language, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 	if r.Method == "OPTIONS" {
 		return
 	}
