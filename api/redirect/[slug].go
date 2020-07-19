@@ -1,4 +1,4 @@
-package redirect
+package handler
 
 import (
 	"context"
@@ -17,8 +17,8 @@ type urlRedirect struct {
 	TargetURL string `bson:"targetURL"`
 }
 
-// Handler ...
-func Handler(w http.ResponseWriter, r *http.Request) {
+// RedirectHandler TODO
+func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 	origin := "https://casca.dev"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
 		origin = "https://carmeloscandaliato.com"

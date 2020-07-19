@@ -1,4 +1,4 @@
-package shorten
+package handler
 
 import (
 	"context"
@@ -42,8 +42,8 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// Handler creates a shortURL from a given targetURL.
-func Handler(w http.ResponseWriter, r *http.Request) {
+// ShortenHandler creates a shortURL from a given targetURL.
+func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	origin := "https://casca.dev"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
 		origin = "https://carmeloscandaliato.com"
