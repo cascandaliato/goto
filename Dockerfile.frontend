@@ -16,4 +16,4 @@ COPY --chown=node:node . .
 
 EXPOSE 3000
 
-CMD [ "vercel", "dev", "--local-config", "vercel.dev.json", "--token", ${VERCEL_TOKEN} ]
+CMD [ "vercel", "dev", "--local-config", "vercel.dev.json", "--token", "$VERCEL_TOKEN" ]
