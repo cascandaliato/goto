@@ -33,7 +33,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	targetURL, err := handlerWithError(w, r)
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Redirect(w, r, "/goto", 307)
+		http.Redirect(w, r, "https://casca.dev/goto", 307)
 		return
 	}
 	http.Redirect(w, r, targetURL, 307)
