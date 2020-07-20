@@ -3,7 +3,7 @@ image:
 
 tasks:
   - init: npm install
-    command: vercel dev --local-config vercel.dev.json --token $VERCEL_TOKEN
+    command: vercel env pull -y --token $VERCEL_TOKEN && vercel dev --local-config vercel.dev.json --token $VERCEL_TOKEN
     name: vercel dev
   - command: mkdir --parents /workspace/data && mongod --dbpath /workspace/data
     name: mongodb
