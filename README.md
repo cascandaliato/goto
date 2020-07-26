@@ -7,4 +7,4 @@
 [![Database MongoDB](https://img.shields.io/badge/database-MongoDB-%2310aa50?logo=MongoDB&style=flat-square&labelColor=%232B3137)](https://www.mongodb.com)
 [![Open in Gitpod](https://img.shields.io/badge/open%20code%20in-Gitpod-%09%231966d2?style=flat-square&labelColor=%232B3137&logo=gitpod)](https://gitpod.io/#https://github.com/casca/goto)
 
-My personal URL shortener. Written in Go and Vue.js. [work in progress 👷🏻‍♂️]
+My personal URL shortener. Written in [Go](https://golang.org/) and [Vue.js](https://vuejs.org/), styled with [Tailwind CSS](https://tailwindcss.com/).
