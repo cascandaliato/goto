@@ -54,16 +54,12 @@ export default {
       this.showShortURL = true;
       this.shortURL = shortURL;
     },
-    handleFailure(err) {
+    handleFailure() {
       this.showSpinner = false;
       this.showShortURL = true;
-      console.log(err);
     },
     afterLeave() {
       this.showSpinner = true;
-    },
-    foo() {
-      console.log("goo");
     }
   }
 };
