@@ -1,6 +1,6 @@
 <template>
   <form
-    class="flex flex-row items-center justify-center flex-no-wrap rounded-full w-11/12 max-w-lg"
+    class="flex flex-row items-center justify-center flex-no-wrap rounded-full w-full"
     style="box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);"
     @submit.prevent="submit"
   >
@@ -19,7 +19,7 @@
     <button
       type="submit"
       ref="submitButton"
-      class="bg-blue-500 border-2 border-blue-500 border-solid text-white p-2 pr-3 rounded-r-full transition duration-100 ease-linear focus:outline-none uppercase focus:bg-pink-500 focus:border-pink-500 hover:bg-pink-500 hover:border-pink-500 tracking-wide font-semibold"
+      class="bg-blue-500 border-2 border-blue-500 border-solid text-white p-2 pr-3 rounded-r-full transition duration-100 ease-linear focus:outline-none uppercase focus:bg-pink-500 focus:border-pink-500 hover:bg-pink-500 hover:border-pink-500 tracking-wide "
     >
       shorten
     </button>
