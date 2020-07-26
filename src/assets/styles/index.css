@@ -4,3 +4,6 @@
 /* purgecss end ignore */
 
 @tailwind utilities;
+
+
+@import './../../../node_modules/animate.css/animate.css';
