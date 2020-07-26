@@ -1,53 +1,72 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <hr />
-    <button @click="api">call api</button>
-    <br />
-    {{ data }}
-    <hr />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div
+    class="h-screen font-sans antialiased text-gray-800 flex flex-col items-center justify-start"
+  >
+    <Logo class="h-32 w-3/4 max-w-md mt-20" />
+    <InputForm
+      class="mt-6"
+      @submit="handleSubmit"
+      @success="handleSuccess"
+      @failure="handleFailure"
+    />
+    <Spinner class="mt-20" v-show="showSpinner" />
+    <transition
+      name="comp-custom-classes-transition"
+      enter-active-class="animate__animated animate__fadeIn animate__faster"
+      leave-active-class="animate__animated animate__fadeOut animate__faster"
+      @after-leave="afterLeave"
+    >
+      <ShortURL
+        class="mt-16"
+        @animationend="foo"
+        :shortURL="shortURL"
+        v-show="showShortURL"
+      />
+    </transition>
+    <Footer
+      class="text-xs text-gray-500 flex-grow flex flex-col justify-end items-center pb-1 mt-12"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import axios from "axios";
+import Spinner from "./components/Spinner.vue";
+import Footer from "./components/Footer.vue";
+import ShortURL from "./components/ShortURL.vue";
+import InputForm from "./components/InputForm.vue";
+import Logo from "./components/Logo.vue";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld
-  },
-  data: () => ({ data: {} }),
+  components: { Footer, InputForm, Spinner, ShortURL, Logo },
+  data: () => ({
+    shortURL: null,
+    showSpinner: false,
+    showShortURL: false
+  }),
   methods: {
-    async api() {
-      try {
-        const url = `${
-          process.env.NODE_ENV === "production" ? "/goto" : ""
-        }/api/shorten`;
-        const { data } = await axios.post(url, {
-          targetURL: `https://${Math.round(Math.random() * 100000)}.com/`
-        });
-        this.data = data;
-      } catch (e) {
-        console.log(e);
-      }
+    handleSubmit() {
+      this.showShortURL = false;
+      if (!this.shortURL) this.showSpinner = true;
+    },
+    handleSuccess(shortURL) {
+      this.showSpinner = false;
+      this.showShortURL = true;
+      this.shortURL = shortURL;
+    },
+    handleFailure(err) {
+      this.showSpinner = false;
+      this.showShortURL = true;
+      console.log(err);
+    },
+    afterLeave() {
+      this.showSpinner = true;
+    },
+    foo() {
+      console.log("goo");
     }
-  },
-  created() {
-    // setInterval(this.api, 5000);
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
