@@ -3,26 +3,23 @@
     class="h-screen font-sans antialiased text-gray-800 flex flex-col items-center justify-start"
   >
     <Logo class="w-full h-auto mt-24 sm:mt-32" />
-    <InputForm
-      class="mt-6"
-      @submit="handleSubmit"
-      @success="handleSuccess"
-      @failure="handleFailure"
-    />
-    <Spinner class="mt-20" v-show="showSpinner" />
-    <transition
-      name="comp-custom-classes-transition"
-      enter-active-class="animate__animated animate__fadeIn animate__faster"
-      leave-active-class="animate__animated animate__fadeOut animate__faster"
-      @after-leave="afterLeave"
-    >
-      <ShortURL
-        class="mt-16"
-        @animationend="foo"
-        :shortURL="shortURL"
-        v-show="showShortURL"
+    <main>
+      <InputForm
+        class="mt-6"
+        @submit="handleSubmit"
+        @success="handleSuccess"
+        @failure="handleFailure"
       />
-    </transition>
+      <Spinner class="mt-20" v-show="showSpinner" />
+      <transition
+        name="comp-custom-classes-transition"
+        enter-active-class="animate__animated animate__fadeIn animate__faster"
+        leave-active-class="animate__animated animate__fadeOut animate__faster"
+        @after-leave="afterLeave"
+      >
+        <ShortURL class="mt-16" :shortURL="shortURL" v-show="showShortURL" />
+      </transition>
+    </main>
     <Footer
       class="text-xs text-gray-500 flex-grow flex flex-col justify-end items-center pb-1 mt-12"
     />

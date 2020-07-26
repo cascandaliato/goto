@@ -9,6 +9,7 @@
     >
       <div class="w-2"></div>
       <input
+        aria-label="Target URL"
         v-model="targetURL"
         type="text"
         class="placeholder-gray-500 focus:outline-none tracking-wide border-0 flex-grow flex-shrink"
@@ -18,7 +19,7 @@
     <button
       type="submit"
       ref="submitButton"
-      class="bg-blue-500 border-2 border-blue-500 border-solid text-white p-2 pr-3 rounded-r-full transition duration-100 ease-linear focus:outline-none uppercase focus:bg-pink-500 focus:border-pink-500 hover:bg-pink-500 hover:border-pink-500 tracking-wide"
+      class="bg-blue-500 border-2 border-blue-500 border-solid text-white p-2 pr-3 rounded-r-full transition duration-100 ease-linear focus:outline-none uppercase focus:bg-pink-500 focus:border-pink-500 hover:bg-pink-500 hover:border-pink-500 tracking-wide font-semibold"
     >
       shorten
     </button>

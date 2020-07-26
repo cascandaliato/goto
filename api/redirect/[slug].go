@@ -20,7 +20,7 @@ type urlRedirect struct {
 
 var httpPrefix = regexp.MustCompile("^http")
 
-// RedirectHandler TODO
+// RedirectHandler redirects to the URL previously associated to the given slug, or to https://casca.dev/goto if no URL is available.
 func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 	origin := "https://casca.dev"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
@@ -37,10 +37,10 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf(targetURL)
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Redirect(w, r, "https://casca.dev/goto", 307)
+		http.Redirect(w, r, "https://casca.dev/goto", http.StatusPermanentRedirect)
 		return
 	}
-	http.Redirect(w, r, targetURL, 307)
+	http.Redirect(w, r, targetURL, http.StatusPermanentRedirect)
 }
 
 func handlerWithError(w http.ResponseWriter, r *http.Request) (string, error) {
