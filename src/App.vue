@@ -2,7 +2,7 @@
   <div
     class="h-screen font-sans antialiased text-gray-800 flex flex-col items-center justify-start"
   >
-    <Logo class="h-32 w-3/4 max-w-md mt-20" />
+    <Logo class="w-full h-auto mt-24 sm:mt-32" />
     <InputForm
       class="mt-6"
       @submit="handleSubmit"

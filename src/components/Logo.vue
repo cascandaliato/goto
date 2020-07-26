@@ -13,7 +13,7 @@
       />
     </svg>
     <svg
-      class="h-full ml-6 fill-current text-gray-700"
+      class="w-1/2 max-w-xs ml-6 fill-current text-gray-700"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 30"
     >

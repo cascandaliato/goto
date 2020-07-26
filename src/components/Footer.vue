@@ -47,13 +47,13 @@
         class="hover:underline  text-gray-600"
         href="https://www.flaticon.com/"
         title="Flaticon"
-        >www.flaticon.com</a
+        ><span class="hidden sm:inline">www.</span>flaticon.com</a
       >
     </span>
     <span>
       Font Awesome by Dave Gandy -
       <a
-        class="hover:underline  text-gray-600"
+        class="hover:underline text-gray-600"
         href="http://fontawesome.io"
         title="Font Awesome"
         >http://fontawesome.io</a
