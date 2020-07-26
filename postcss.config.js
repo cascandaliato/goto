@@ -1,14 +1,14 @@
-const autoprefixer = require('autoprefixer');
-const tailwindcss = require('tailwindcss');
+const autoprefixer = require("autoprefixer");
+const tailwindcss = require("tailwindcss");
 
 const postcssPurgecss = require(`@fullhuman/postcss-purgecss`);
 
 const purgecss = postcssPurgecss({
   // Specify the paths to all of the template files in your project.
-  content: ['./public/**/*.html', './src/**/*.vue'],
+  content: ["./public/**/*.html", "./src/**/*.vue"],
   // Include any special characters you're using in this regular expression.
   // See: https://tailwindcss.com/docs/controlling-file-size/#understanding-the-regex
-  defaultExtractor: (content) => {
+  defaultExtractor: content => {
     // // Capture as liberally as possible, including things like `h-(screen-1.5)`
     // const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
 
@@ -23,14 +23,15 @@ const purgecss = postcssPurgecss({
   whitelistPatterns: [
     /-(leave|enter|appear)(|-(to|from|active))$/,
     /^(?!(|.*?:)cursor-move).+-move$/,
-    /^router-link(|-exact)-active$/,
+    /^router-link(|-exact)-active$/
   ],
+  keyframes: true
 });
 
 module.exports = {
   plugins: [
     tailwindcss,
     autoprefixer,
-    ...(process.env.NODE_ENV === 'production' ? [purgecss] : []),
-  ],
+    ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
+  ]
 };
