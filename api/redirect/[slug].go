@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"regexp"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,6 +17,8 @@ type urlRedirect struct {
 	Slug      string `bson:"slug"`
 	TargetURL string `bson:"targetURL"`
 }
+
+var httpPrefix = regexp.MustCompile("^http")
 
 // RedirectHandler TODO
 func RedirectHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +34,7 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	targetURL, err := handlerWithError(w, r)
+	fmt.Printf(targetURL)
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
 		http.Redirect(w, r, "https://casca.dev/goto", 307)
@@ -62,6 +66,9 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "", e("error while looking for existing redirect", err)
 	}
 
+	if !httpPrefix.MatchString(redir.TargetURL) {
+		return "https://" + redir.TargetURL, nil
+	}
 	return redir.TargetURL, nil
 }
 
