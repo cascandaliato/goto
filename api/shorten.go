@@ -25,18 +25,11 @@ type requestBody struct {
 	TargetURL string
 }
 
-type handlerError struct {
-	message string
-	code    int
-}
-
 type errorResponse struct {
 	Message string `json:"error"`
 }
 
-const timeoutSec = 1
-
-var letterRunes = []rune("abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789")
+var slugLetters = []rune("abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789")
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
@@ -126,7 +119,7 @@ func unusedSlug(c *mongo.Collection) (string, error) {
 func randStringRunes(n int) string {
 	b := make([]rune, n)
 	for i := range b {
-		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+		b[i] = slugLetters[rand.Intn(len(slugLetters))]
 	}
 	return string(b)
 }
