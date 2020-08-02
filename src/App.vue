@@ -22,7 +22,7 @@
       </transition>
     </main>
     <Footer
-      class="text-xs text-gray-500 flex-grow flex flex-col justify-end items-center pb-1 mt-12"
+      class="text-xs text-gray-700 flex-grow flex flex-col justify-end items-center pb-1 mt-12"
     />
   </div>
 </template>
