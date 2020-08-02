@@ -23,7 +23,9 @@ const purgecss = postcssPurgecss({
   whitelistPatterns: [
     /-(leave|enter|appear)(|-(to|from|active))$/,
     /^(?!(|.*?:)cursor-move).+-move$/,
-    /^router-link(|-exact)-active$/
+    /^router-link(|-exact)-active$/,
+    /svg.*/,
+    /fa.*/
   ],
   keyframes: true
 });

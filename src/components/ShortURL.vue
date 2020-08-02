@@ -21,7 +21,7 @@
         }"
         @mouseleave="resetTooltipMessage"
       >
-        <i class="far fa-clipboard fa-2x"></i>
+        <FontAwesomeIcon :icon="['far', 'clipboard']" size="2x" />
       </span>
     </div>
   </div>
@@ -30,10 +30,11 @@
 <script>
 import copy from "copy-to-clipboard";
 import Scissors from "./Scissors.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   props: ["shortURL"],
-  components: { Scissors },
+  components: { Scissors, FontAwesomeIcon },
   data: () => ({
     tooltipMessage: "Copy to clipboard"
   }),
