@@ -11,6 +11,7 @@
       <input
         aria-label="Target URL"
         v-model="targetURL"
+        ref="targetURLInput"
         type="text"
         class="placeholder-gray-500 focus:outline-none tracking-wide border-0 flex-grow flex-shrink"
         placeholder="Enter a URL to shorten..."
@@ -52,6 +53,9 @@ export default {
       this.$emit("submit");
       this.api();
     }
+  },
+  mounted() {
+    this.$refs.targetURLInput.focus();
   }
 };
 </script>
