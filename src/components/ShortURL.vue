@@ -90,6 +90,7 @@ export default {
 .tooltip .tooltip-inner {
   background: #4299e1;
   color: white;
+  font-weight: 500;
   border-radius: 6px;
   padding: 5px 10px 4px;
 }
