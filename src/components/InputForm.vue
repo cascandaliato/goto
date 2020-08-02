@@ -13,7 +13,7 @@
         v-model="targetURL"
         type="text"
         class="placeholder-gray-500 focus:outline-none tracking-wide border-0 flex-grow flex-shrink"
-        placeholder="https://vuejs.org/v2/guide/forms.html"
+        placeholder="Enter a URL to shorten..."
       />
     </div>
     <button
