@@ -4,18 +4,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "(/(?!goto)(?!api).*)",
-      "destination": "/goto"
-    },
-    {
-      "source": "/goto/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/goto/((?!api/).*)",
-      "destination": "/goto"
+      "source": "(/(?!api).*)",
+      "destination": "/"
     }
   ]
 }
