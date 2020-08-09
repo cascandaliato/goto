@@ -37,10 +37,7 @@ export default {
   methods: {
     async api() {
       try {
-        const url = `${
-          process.env.NODE_ENV === "production" ? "/goto" : ""
-        }/api/shorten`;
-        const { data } = await axios.post(url, {
+        const { data } = await axios.post("/goto/api/shorten", {
           targetURL: this.targetURL
         });
         this.$emit("success", data.shortURL);
