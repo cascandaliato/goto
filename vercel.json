@@ -2,10 +2,20 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "(/(?!goto)(?!api).*)",
+      "destination": "/goto"
+    },
+    {
+      "source": "/goto/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ],
   "rewrites": [
     {
-      "source": "/((?!api).*)",
-      "destination": "/"
+      "source": "/goto/((?!api/).*)",
+      "destination": "/goto"
     }
   ]
 }
