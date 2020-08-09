@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" bg-white p-4 text-lg flex justify-center items-center border-2 border-gray-400 border-dashed relative"
+    class="bg-white p-4 text-lg flex justify-center items-center border-2 border-gray-400 border-dashed relative"
   >
     <Scissors
       @click="selectText()"
@@ -36,7 +36,7 @@ export default {
   props: ["shortURL"],
   components: { Scissors, FontAwesomeIcon },
   data: () => ({
-    tooltipMessage: "Copy to clipboard"
+    tooltipMessage: "Click to copy"
   }),
   methods: {
     selectShortURL() {
