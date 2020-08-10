@@ -6,9 +6,8 @@
         class="hover:underline text-gray-900"
         href="https://www.fontspring.com/fonts/los-andes-type/fibra/fibra-light"
         title="fibra-light"
+        >fibra-light</a
       >
-        fibra-light
-      </a>
       by
       <a
         class="hover:underline text-gray-900"
