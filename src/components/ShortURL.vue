@@ -10,7 +10,7 @@
     <div ref="shortURL" @click="selectText()">{{ shortURL }}</div>
     <div class="flex flex-col justify-center items-center">
       <span
-        class="text-blue-500 hover:text-pink-500 cursor-pointer ml-4 transition duration-100 ease-linear"
+        class="text-blue-500 hover:text-pink-500 cursor-pointer ml-4 transition duration-75 ease-linear"
         @click="copyToClipboard"
         v-tooltip="{
           content: this.tooltipMessage,
