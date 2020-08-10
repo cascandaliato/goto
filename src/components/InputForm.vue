@@ -1,7 +1,6 @@
 <template>
   <form
     class="flex flex-row items-center justify-center flex-no-wrap rounded-full w-full"
-    style="box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);"
     @submit.prevent="submit"
   >
     <div
@@ -57,4 +56,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+form {
+  /* box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+}
+
+form:hover {
+  /* box-shadow: 0 1px 6px 2px rgba(32, 33, 36, 0.28); */
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+</style>
