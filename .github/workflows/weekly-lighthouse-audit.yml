@@ -1,4 +1,4 @@
-name: Lighthouse Audit
+name: Weekly Lighthouse Audit
 
 on:
   schedule:
