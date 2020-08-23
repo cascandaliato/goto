@@ -13,12 +13,20 @@
       />
       <Spinner class="mt-20" v-show="showSpinner" />
       <transition
-        name="comp-custom-classes-transition"
+        name="short-url-transition"
         enter-active-class="animate__animated animate__fadeIn animate__faster"
         leave-active-class="animate__animated animate__fadeOut animate__faster"
         @after-leave="afterLeave"
       >
         <ShortURL class="mt-16" :shortURL="shortURL" v-show="showShortURL" />
+      </transition>
+      <transition
+        name="error-transition"
+        enter-active-class="animate__animated animate__fadeIn animate__faster"
+        leave-active-class="animate__animated animate__fadeOut animate__faster"
+        @after-leave="afterLeave"
+      >
+        <Error class="mt-16" :message="errorMessage" v-show="showError" />
       </transition>
     </main>
     <Footer
@@ -29,6 +37,7 @@
 
 <script>
 import Spinner from "./components/Spinner.vue";
+import Error from "./components/Error.vue";
 import Footer from "./components/Footer.vue";
 import ShortURL from "./components/ShortURL.vue";
 import InputForm from "./components/InputForm.vue";
@@ -36,27 +45,40 @@ import Logo from "./components/Logo.vue";
 
 export default {
   name: "App",
-  components: { Footer, InputForm, Spinner, ShortURL, Logo },
+  components: { Error, Footer, InputForm, Logo, ShortURL, Spinner },
   data: () => ({
+    showShortURL: false,
     shortURL: null,
+    showError: false,
+    errorMessage: null,
     showSpinner: false,
-    showShortURL: false
+    firstRequest: true
   }),
   methods: {
     handleSubmit() {
       this.showShortURL = false;
-      if (!this.shortURL) this.showSpinner = true;
+      this.showError = false;
+      this.showSpinner = false;
+
+      if (this.firstRequest) this.showSpinner = true;
+      this.firstRequest = false;
     },
     handleSuccess(shortURL) {
       this.showSpinner = false;
+
       this.showShortURL = true;
       this.shortURL = shortURL;
     },
-    handleFailure() {
+    handleFailure(e) {
       this.showSpinner = false;
-      this.showShortURL = true;
+
+      this.showError = true;
+      this.errorMessage =
+        e.message.charAt(0).toUpperCase() + e.message.slice(1);
     },
     afterLeave() {
+      this.shortURL = null;
+      this.errorMessage = null;
       this.showSpinner = true;
     }
   }
