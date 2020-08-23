@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -26,7 +28,8 @@ type requestBody struct {
 }
 
 type errorResponse struct {
-	Message string `json:"error"`
+	Message         string `json:"message"`
+	Error string `json:"error"`
 }
 
 var slugLetters = []rune("abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789")
@@ -51,23 +54,32 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	urlRedirect, err := handlerWithError(w, r)
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		json.NewEncoder(w).Encode(&errorResponse{Message: err.Error()})
+		json.NewEncoder(w).Encode(&err)
 		return
 	}
 	urlRedirect.ShortURL = toURL(urlRedirect.Slug)
 	json.NewEncoder(w).Encode(urlRedirect)
 }
 
-func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, error) {
+func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, *errorResponse) {
 	var reqBody requestBody
 	err := json.NewDecoder(r.Body).Decode(&reqBody)
 	if err != nil {
-		return nil, e("error while parsing request", err)
+		return nil, e("There has been an error while parsing your request", err)
+	}
+
+	_, err = url.ParseRequestURI(reqBody.TargetURL)
+	if err != nil {
+		return nil, e("Enter a valid URL", err)
+	}
+
+	if !strings.HasPrefix(reqBody.TargetURL, "http") {
+		return nil, e("Enter a URL that starts with http", errors.New("URL must start with http"))
 	}
 
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(os.Getenv("MONGODB")))
 	if err != nil {
-		return nil, e("error while connecting to database", err)
+		return nil, e("There has been an error while connecting to the database", err)
 	}
 	// TODO: warn if connection leaks?
 	defer client.Disconnect(context.TODO())
@@ -80,25 +92,25 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, err
 		return &redir, nil
 	}
 	if err != nil && !errors.Is(err, mongo.ErrNoDocuments) {
-		return nil, e("error while looking for existing redirect", err)
+		return nil, e("There has been an error while looking for an existing redirect", err)
 	}
 
 	slug, err := unusedSlug(collection)
 	if err != nil {
-		return nil, e("error while generating short url", err)
+		return nil, e("There has been an error while generating a short URL", err)
 	}
 
 	redir = urlRedirect{TargetURL: reqBody.TargetURL, Slug: slug}
 	_, err = collection.InsertOne(context.TODO(), redir)
 	if err != nil {
-		return nil, e("error while adding record to database", err)
+		return nil, e("There has been an error while saving the URL to the database", err)
 	}
 
 	return &redir, nil
 }
 
-func e(message string, err error) error {
-	return fmt.Errorf("%s: %v", message, err)
+func e(message string, err error) *errorResponse {
+	return &errorResponse{message, err.Error()}
 }
 
 func unusedSlug(c *mongo.Collection) (string, error) {

@@ -39,7 +39,11 @@ export default {
         const { data } = await axios.post("/goto/api/shorten", {
           targetURL: this.targetURL
         });
-        this.$emit("success", data.shortURL);
+        if (data.error) {
+          this.$emit("failure", new Error(data.message));
+        } else {
+          this.$emit("success", data.shortURL);
+        }
       } catch (e) {
         this.$emit("failure", e);
       }
