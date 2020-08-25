@@ -1,3 +1,3 @@
 FROM gitpod/workspace-mongodb
 
-RUN npm install --global vercel@canary
+RUN npm install --global vercel
