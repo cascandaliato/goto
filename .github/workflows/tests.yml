@@ -19,5 +19,5 @@ jobs:
       uses: cypress-io/github-action@v2
       with:
         env: MONGODB=mongodb://localhost:27017
-        start: vercel dev --local-config vercel.dev.json --token ${{ secrets.VERCEL_TOKEN }}
+        start: npx vercel dev --local-config vercel.dev.json --token ${{ secrets.VERCEL_TOKEN }}
         wait-on: 'http://localhost:3000'
