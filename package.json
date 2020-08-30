@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "local": "concurrently --kill-others \"docker-compose up mongodb\" \"npm:vercel-dev\"",
-    "vercel-dev": "vercel env pull -y && vercel dev --local-config vercel.dev.json"
+    "vercel-dev": "vercel dev --local-config vercel.dev.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
