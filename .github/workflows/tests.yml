@@ -17,10 +17,13 @@ jobs:
 
     - name: Cypress run
       uses: cypress-io/github-action@v2
+      id: cypress
+      continue-on-error: true
       with:
         env: MONGODB=mongodb://localhost:27017
         start: npx vercel dev --confirm --local-config vercel.dev.json --token ${{ secrets.VERCEL_TOKEN }}
         wait-on: 'http://localhost:3000'
+        group: 'All Tests'
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
