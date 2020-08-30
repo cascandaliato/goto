@@ -25,3 +25,17 @@ jobs:
         env: MONGODB=mongodb://localhost:27017
         start: npx vercel dev --confirm --local-config vercel.dev.json --token ${{ secrets.VERCEL_TOKEN }}
         wait-on: 'http://localhost:3000'
+
+    - name: Upload screenshots on failure
+      uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - name: Upload videos
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
