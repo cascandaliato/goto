@@ -7,7 +7,7 @@
       class="inline-block h-5 w-5 absolute left-2 -top-07 cursor-pointer"
     />
 
-    <div ref="shortURL" @click="selectText()">{{ shortURL }}</div>
+    <div id="shortURL" ref="shortURL" @click="selectText()">{{ shortURL }}</div>
     <div class="flex flex-col justify-center items-center">
       <span
         class="text-blue-500 hover:text-pink-500 cursor-pointer ml-4 transition duration-75 ease-linear"
