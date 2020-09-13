@@ -1,6 +1,7 @@
 <template>
   <header class="flex flex-row items-center justify-center">
     <svg
+      id="logo"
       class="h-full fill-current text-indigo-500"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 480.026 480.026"

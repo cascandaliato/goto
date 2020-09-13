@@ -1,0 +1,51 @@
+name: Tests on master
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
+      with:
+        mongodb-version: 4.2
+
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      id: cypress
+      continue-on-error: true
+      with:
+        browser: chrome
+        env: MONGODB=mongodb://localhost:27017
+        record: true
+        start: npx vercel dev --confirm --local-config vercel.dev.json --token ${{ secrets.VERCEL_TOKEN }}
+        wait-on: 'http://localhost:3000'
+      env:
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload screenshots on failure
+      uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - name: Upload videos
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
+    - name: Print Dashboard URL
+      run: |
+        echo Cypress finished with: ${{ steps.cypress.outcome }}
+        echo See results at ${{ steps.cypress.outputs.dashboardUrl }}

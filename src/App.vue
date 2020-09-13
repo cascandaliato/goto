@@ -4,7 +4,7 @@
   >
     <Logo class="w-full h-auto mt-24 sm:mt-32" />
     <main
-      class="flex flex-col items-center justify-start mt-8 w-11/12 max-w-lg"
+      class="flex flex-col items-center justify-start mt-8 sm:mt-10 w-11/12 max-w-lg"
     >
       <InputForm
         @submit="handleSubmit"
@@ -43,9 +43,17 @@ import ShortURL from "./components/ShortURL.vue";
 import InputForm from "./components/InputForm.vue";
 import Logo from "./components/Logo.vue";
 
+const bgStyles = ["bg-gradient-to-r", "from-white", "via-gray-100", "to-white"];
+
 export default {
   name: "App",
   components: { Error, Footer, InputForm, Logo, ShortURL, Spinner },
+  beforeCreate() {
+    document.querySelector("body").classList.add(...bgStyles);
+  },
+  beforeDestroy() {
+    document.querySelector("body").classList.remove(...bgStyles);
+  },
   data: () => ({
     showShortURL: false,
     shortURL: null,
@@ -85,8 +93,4 @@ export default {
 };
 </script>
 
-<style>
-body {
-  background-color: #f7fafc;
-}
-</style>
+<style scoped></style>
