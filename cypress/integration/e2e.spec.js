@@ -24,4 +24,15 @@ describe("Main page", () => {
       });
     });
   });
+
+  xit("is visually unchanged", () => {
+    cy.visit("/");
+    cy.get("#logo")
+      .should("be.visible")
+      .then(() => {
+        // cy.get("input").type("abc");
+        // cy.wait(3000);
+        cy.percySnapshot("Homepage");
+      });
+  });
 });
