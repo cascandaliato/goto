@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+// file deepcode ignore PromiseNotCaughtGeneral: cypress has no ".catch" command, see https://docs.cypress.io/guides/core-concepts/conditional-testing.html#Error-Recovery
 
 const API_TIMEOUT_MS = 90000;
 
