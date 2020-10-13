@@ -50,7 +50,10 @@
     </span>
     <span>
       © 2020
-      <a href="https://github.com/cascandaliato" title="GitHub user cascandaliato">
+      <a
+        href="https://github.com/cascandaliato"
+        title="GitHub user cascandaliato"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 230 140"
