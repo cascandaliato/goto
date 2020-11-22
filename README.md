@@ -10,3 +10,11 @@
 [![Open in Gitpod](https://img.shields.io/badge/open%20code%20in-Gitpod-%09%231966d2?style=flat-square&labelColor=%232B3137&logo=gitpod)](https://gitpod.io/#https://github.com/casca/goto)
 
 My URL shortener toy project. Written in [Go](https://golang.org/) and [Vue.js](https://vuejs.org/), styled with [Tailwind CSS](https://tailwindcss.com/). Live at [casca.dev/goto](https://casca.dev/goto).
+
+### Technologies used
+
+- [Cypress](https://www.cypress.io/)
+- [Go](https://golang.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vue.js](https://vuejs.org/)
