@@ -53,6 +53,7 @@
       <a
         href="https://github.com/cascandaliato"
         title="GitHub user cascandaliato"
+        class="hover:underline text-gray-900"
         >Carmelo Scandaliato
         <svg
           xmlns="http://www.w3.org/2000/svg"
