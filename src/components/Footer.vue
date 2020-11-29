@@ -51,8 +51,8 @@
     <span>
       © 2020
       <a
-        href="https://github.com/cascandaliato"
-        title="GitHub user cascandaliato"
+        href="https://cascandaliato.com"
+        title="Author's home page"
         class="hover:underline text-gray-900"
         >Carmelo Scandaliato
         <svg
