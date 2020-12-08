@@ -89,7 +89,7 @@ export default {
 }
 
 .tooltip .tooltip-inner {
-  background: #4299e1;
+  background: #3b82f6;
   color: white;
   font-weight: 500;
   border-radius: 6px;
@@ -102,7 +102,7 @@ export default {
   border-style: solid;
   position: absolute;
   margin: 5px;
-  border-color: #4299e1;
+  border-color: #3b82f6;
   z-index: 1;
 }
 
