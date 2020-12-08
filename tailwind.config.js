@@ -1,5 +1,5 @@
 module.exports = {
-  purge: false,
+  purge: ["./src/**/*.html", "./src/**/*.vue"],
   theme: {
     inset: {
       "0": 0,
