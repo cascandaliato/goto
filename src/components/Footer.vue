@@ -49,7 +49,7 @@
       >
     </span>
     <span>
-      © 2020
+      Built by
       <a
         href="https://cascandaliato.com"
         title="Author's home page"
