@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-screen font-sans antialiased text-gray-800 flex flex-col  items-center justify-start border-2 border-green-500"
+    class="h-screen font-sans antialiased text-gray-800 flex flex-col  items-center justify-start"
   >
     <Logo class="w-11/12 max-w-lg mt-24 sm:mt-32" />
     <main
