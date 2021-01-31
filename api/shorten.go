@@ -40,7 +40,7 @@ func init() {
 
 // ShortenHandler creates a shortURL from a given targetURL.
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
-	origin := "https://casca.dev"
+	origin := "https://casca.to"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
 		origin = "https://carmeloscandaliato.com"
 	}
@@ -137,5 +137,5 @@ func randStringRunes(n int) string {
 }
 
 func toURL(slug string) string {
-	return fmt.Sprintf("https://casca.dev/goto/%s", slug)
+	return fmt.Sprintf("https://casca.to/goto/%s", slug)
 }
