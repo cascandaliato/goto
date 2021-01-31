@@ -15,7 +15,7 @@ describe("Main page", () => {
       .as("submitButton")
       .click();
 
-    cy.contains("#shortURL", /^https:\/\/casca\.dev\/goto\/\w{4}$/, {
+    cy.contains("#shortURL", /^https:\/\/casca\.to\/\w{4}$/, {
       timeout: API_TIMEOUT_MS
     }).then($shortURL => {
       cy.get("@submitButton").click();

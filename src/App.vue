@@ -1,8 +1,8 @@
 <template>
   <div
-    class="h-screen font-sans antialiased text-gray-800 flex flex-col items-center justify-start"
+    class="h-screen font-sans antialiased text-gray-800 flex flex-col  items-center justify-start border-2 border-green-500"
   >
-    <Logo class="w-full h-auto mt-24 sm:mt-32" />
+    <Logo class="w-11/12 max-w-lg mt-24 sm:mt-32" />
     <main
       class="flex flex-col items-center justify-start mt-8 sm:mt-10 w-11/12 max-w-lg"
     >

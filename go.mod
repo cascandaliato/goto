@@ -1,4 +1,4 @@
-module github.com/casca/goto
+module github.com/cascandaliato/casca.to
 
 go 1.14
 

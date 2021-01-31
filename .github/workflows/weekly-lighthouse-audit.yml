@@ -2,7 +2,7 @@ name: Weekly Lighthouse Audit
 
 on:
   schedule:
-    - cron: '0 21 * * 4'
+    - cron: "0 21 * * 4"
 
 jobs:
   lighthouse:
@@ -11,25 +11,25 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
-          repository: 'casca/lighthouse-reports'
+          repository: "cascandaliato/lighthouse-reports"
           ref: master
           persist-credentials: false
       - name: Audit URLs using Lighthouse 💡🏡
         id: LHCIAction
         uses: treosh/lighthouse-ci-action@v3
         with:
-          urls: 'https://casca.dev/goto'
+          urls: "https://casca.to"
           uploadArtifacts: true
           temporaryPublicStorage: true
-      - run: cp ${{steps.LHCIAction.outputs.resultsPath}}/lhr*.json $GITHUB_WORKSPACE/casca.dev-goto.json
+      - run: cp ${{steps.LHCIAction.outputs.resultsPath}}/lhr*.json $GITHUB_WORKSPACE/casca.to.json
       - name: Commit files
         run: |
-          git config --local user.name "casca"
-          git config --local user.email "8927157+casca@users.noreply.github.com"
-          git add casca.dev-goto.json
-          git commit -m "Update lighthouse report for casca.dev/goto"
+          git config --local user.name "cascandaliato"
+          git config --local user.email "8927157+cascandaliato@users.noreply.github.com"
+          git add casca.to.json
+          git commit -m "Update lighthouse report for casca.to"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          repository: 'casca/lighthouse-reports'
+          repository: "cascandaliato/lighthouse-reports"
           github_token: ${{ secrets.PUSH_TOKEN }}

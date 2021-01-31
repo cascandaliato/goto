@@ -20,9 +20,9 @@ type urlRedirect struct {
 
 var httpPrefix = regexp.MustCompile("^http")
 
-// RedirectHandler redirects to the URL previously associated to the given slug, or to https://casca.dev/goto if no URL is available.
+// RedirectHandler redirects to the URL previously associated to the given slug, or to https://casca.to if no URL is available.
 func RedirectHandler(w http.ResponseWriter, r *http.Request) {
-	origin := "https://casca.dev"
+	origin := "https://casca.to"
 	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
 		origin = "https://carmeloscandaliato.com"
 	}
@@ -37,7 +37,7 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf(targetURL)
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Redirect(w, r, "https://casca.dev/goto", http.StatusPermanentRedirect)
+		http.Redirect(w, r, "https://casca.to", http.StatusPermanentRedirect)
 		return
 	}
 	http.Redirect(w, r, targetURL, http.StatusPermanentRedirect)
@@ -55,7 +55,7 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (string, error) {
 	}
 	defer client.Disconnect(context.TODO())
 
-	collection := client.Database("goto").Collection("redirects")
+	collection := client.Database("casca-to").Collection("redirects")
 
 	var redir urlRedirect
 	err = collection.FindOne(context.TODO(), bson.M{"slug": slug}).Decode(&redir)

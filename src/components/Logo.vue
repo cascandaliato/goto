@@ -1,8 +1,8 @@
 <template>
-  <header class="flex flex-row items-center justify-center">
+  <header class="flex h-24 flex-row items-center justify-center">
     <svg
       id="logo"
-      class="h-full fill-current text-indigo-500"
+      class="h-24 fill-current text-indigo-500"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 480.026 480.026"
     >
@@ -14,7 +14,7 @@
       />
     </svg>
     <svg
-      class="w-1/2 max-w-xs ml-6 fill-current text-gray-700"
+      class="h-20 ml-6 fill-current text-gray-700"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 30"
     >

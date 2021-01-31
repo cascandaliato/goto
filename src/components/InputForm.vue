@@ -36,7 +36,7 @@ export default {
   methods: {
     async api() {
       try {
-        const { data } = await axios.post("/goto/api/shorten", {
+        const { data } = await axios.post("/api/shorten", {
           targetURL: this.targetURL
         });
         if (data.error) {

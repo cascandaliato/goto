@@ -40,10 +40,7 @@ func init() {
 
 // ShortenHandler creates a shortURL from a given targetURL.
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
-	origin := "https://casca.dev"
-	if r.Header.Get("Origin") == "https://carmeloscandaliato.com" {
-		origin = "https://carmeloscandaliato.com"
-	}
+	origin := "https://casca.to"
 	w.Header().Set("Access-Control-Allow-Origin", origin)
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Accept-Language, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
@@ -84,7 +81,7 @@ func handlerWithError(w http.ResponseWriter, r *http.Request) (*urlRedirect, *er
 	// TODO: warn if connection leaks?
 	defer client.Disconnect(context.TODO())
 
-	collection := client.Database("goto").Collection("redirects")
+	collection := client.Database("casca-to").Collection("redirects")
 
 	var redir urlRedirect
 	err = collection.FindOne(context.TODO(), bson.M{"targetURL": reqBody.TargetURL}).Decode(&redir)
@@ -137,5 +134,5 @@ func randStringRunes(n int) string {
 }
 
 func toURL(slug string) string {
-	return fmt.Sprintf("https://casca.dev/goto/%s", slug)
+	return fmt.Sprintf("https://casca.to/%s", slug)
 }

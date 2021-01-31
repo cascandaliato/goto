@@ -57,7 +57,7 @@
         >Carmelo Scandaliato</a
       >&nbsp;
       <a
-        href="https://github.com/cascandaliato/goto"
+        href="https://github.com/cascandaliato/casca.to"
         title="Project's GitHub repository"
         class="hover:underline text-gray-900"
         ><FontAwesomeIcon :icon="['fab', 'github']" size="lg"/></a
